@@ -58,7 +58,7 @@ SpiderRecon is an advanced reconnaissance tool designed to crawl websites and ex
 
 ---
 
-# Spider Recon
+# SpiderRecon
 
 ![SpiderRecon](https://raw.githubusercontent.com/tamrinotte/spiderrecon/main/app_images/spiderrecon_logo.png)
 
