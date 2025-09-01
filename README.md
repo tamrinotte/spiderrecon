@@ -30,7 +30,7 @@ SpiderRecon is an advanced reconnaissance tool designed to crawl websites and ex
 
 **-p, --phone_number_scan:** Scan for phone numbers.
 
-**-s, --social_media_scan:** Scan for social media scan.
+**-s, --social_media_scan:** Scan for social media accounts.
 
 **-m MAX_PAGES, --max_pages MAX_PAGES:** Max number of pages to crawl (default: 1000).
 
