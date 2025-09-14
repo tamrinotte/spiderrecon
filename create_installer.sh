@@ -17,7 +17,7 @@ print_info_message() {
 
 declare_variables() {
     app_name="spiderrecon"
-    version="0.1.2"
+    version="0.1.3"
     username=$USER
     build_dirs=("dist" "build" "package")
     installer="${app_name}.deb"

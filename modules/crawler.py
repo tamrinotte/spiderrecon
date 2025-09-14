@@ -35,7 +35,6 @@ def extract_phone_numbers(text, region=None):
     return numbers
 
 def normalize_url(url):
-    # Remove fragments like #section, strip trailing slashes
     return urllib.parse.urldefrag(url)[0].rstrip("/")
 
 def fetch_url(session, url):
@@ -56,11 +55,14 @@ def fetch_url(session, url):
 ##############################
 
 def crawl_and_extract(
+    max_workers,
     start_url,
     user_agent,
     is_email_scan_on,
     is_phone_number_scan_on,
     is_social_media_scan_on,
+    is_file_scan_on,
+    downloadable_extensions,
     social_media_domains,
     max_pages
 ):
@@ -68,11 +70,11 @@ def crawl_and_extract(
     emails = set()
     phones = set()
     social_links = set()
-    queue = collections.deque([normalize_url(start_url)])
+    file_urls = set()
 
+    queue = collections.deque([normalize_url(start_url)])
     domain = urllib.parse.urlparse(start_url).netloc
     pages_crawled = 0
-    max_workers = 10  # Number of threads
 
     session = requests.Session()
     session.headers.update({"User-Agent": f"{user_agent}"})
@@ -103,35 +105,50 @@ def crawl_and_extract(
                     print(f"[>] Crawled ({pages_crawled}): {url}")
                     pages_crawled += 1
 
-                    # Email extraction
                     if is_email_scan_on:
                         found_emails = EMAIL_REGEX.findall(html)
                         normalized_emails = {email.lower().strip().strip(".") for email in found_emails}
                         emails.update(normalized_emails)
 
-                    # Phone extraction
                     if is_phone_number_scan_on:
                         found_phones = extract_phone_numbers(html)
                         phones.update(found_phones)
 
                     # Internal links
                     soup = bs4.BeautifulSoup(html, "lxml")
-                    for link in soup.find_all("a", href=True):
-                        next_url = normalize_url(urllib.parse.urljoin(url, link["href"]))
-                        
-                        # Collect social media links
-                        if is_social_media_scan_on:
-                            parsed_netloc = urllib.parse.urlparse(next_url).netloc.lower()
-                            if any(social_domain in parsed_netloc for social_domain in social_media_domains):
-                                if next_url not in social_links:
-                                    social_links.add(next_url)
+                    
+                    tag_attrs = {
+                        "a": "href",
+                        "img": "src",
+                        "video": "src",
+                        "source": "src",
+                        "link": "href",
+                    }
 
-                        if (
-                            urllib.parse.urlparse(next_url).netloc == domain
-                            and next_url not in visited
-                            and len(visited) + len(queue) < max_pages
-                        ):
-                            queue.append(next_url)
+                    for tag, attr in tag_attrs.items():
+                        for element in soup.find_all(tag):
+                            raw = element.get(attr)
+                            if not raw:
+                                continue
+                            candidate = normalize_url(urllib.parse.urljoin(url, raw))
+
+                            if is_social_media_scan_on:
+                                netloc = urllib.parse.urlparse(candidate).netloc.lower()
+                                if any(d in netloc for d in social_media_domains):
+                                    social_links.add(candidate)
+
+                            if is_file_scan_on:
+                                for ext in downloadable_extensions:
+                                    if candidate.lower().endswith(ext):
+                                        file_urls.add(candidate)
+
+                            parsed = urllib.parse.urlparse(candidate)
+                            if (
+                                parsed.netloc == domain
+                                and candidate not in visited
+                                and len(visited) + len(queue) < max_pages
+                            ):
+                                queue.append(candidate)
 
     except KeyboardInterrupt:
         print("\n[!] Crawl interrupted. Returning partial results.\n")
@@ -141,4 +158,4 @@ def crawl_and_extract(
         print(f"Total unique emails found: {len(emails)}")
         print(f"Total unique phone numbers found: {len(phones)}")
         print(f"Total unique social media accounts found: {len(social_links)}\n")
-        return emails, phones, social_links
+        return emails, phones, social_links, file_urls

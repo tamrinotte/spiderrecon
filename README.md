@@ -12,7 +12,7 @@ SpiderRecon is an advanced reconnaissance tool designed to crawl websites and ex
 
    * Kali
 
-         curl -L https://github.com/tamrinotte/spiderrecon/releases/download/kali_v0.1.2/spiderrecon.deb -o spiderrecon.deb
+         curl -L https://github.com/tamrinotte/spiderrecon/releases/download/kali_v0.1.3/spiderrecon.deb -o spiderrecon.deb
 
 2. Start the installer.
 
@@ -78,7 +78,7 @@ SpiderRecon, web sitelerini taramak ve herkese açık e-posta adresleri, telefon
 
    * Kali
 
-         curl -L https://github.com/tamrinotte/spiderrecon/releases/download/kali_v0.1.2/spiderrecon.deb -o spiderrecon.deb
+         curl -L https://github.com/tamrinotte/spiderrecon/releases/download/kali_v0.1.3/spiderrecon.deb -o spiderrecon.deb
 
 2. Yükleyiciyi başlatın.
 
