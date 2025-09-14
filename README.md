@@ -2,7 +2,7 @@
 
 ![SpiderRecon](https://raw.githubusercontent.com/tamrinotte/spiderrecon/main/app_images/spiderrecon_logo.png)
 
-SpiderRecon is an advanced reconnaissance tool designed to crawl websites and extract publicly available email addresses, phone numbers, and social media accounts. It allows configurable crawling depth, ensures deduplicated results, and supports exporting findings to a file, making it suitable for OSINT research, security assessments, and contact discovery.
+SpiderRecon is an advanced reconnaissance tool designed to crawl websites and extract publicly available information. It allows configurable crawling depth, ensures deduplicated results, and supports exporting findings to a file, making it suitable for OSINT research, security assessments, and contact discovery.
 
 <br>
 
@@ -74,7 +74,7 @@ SpiderRecon is an advanced reconnaissance tool designed to crawl websites and ex
 
 ![SpiderRecon](https://raw.githubusercontent.com/tamrinotte/spiderrecon/main/app_images/spiderrecon_logo.png)
 
-SpiderRecon, web sitelerini taramak ve herkese açık e-posta adresleri, telefon numaraları ve sosyal medya hesaplarını çıkarmak için tasarlanmış gelişmiş bir keşif aracıdır. Ayarlanabilir tarama derinliği sunar, yinelenen sonuçları engeller ve bulguların dosyaya aktarılmasını destekler. Bu özellikleri sayesinde OSINT araştırmaları, güvenlik değerlendirmeleri ve iletişim keşfi için uygundur.
+SpiderRecon, web sitelerini taramak ve herkese açık bilgileri çıkarmak için tasarlanmış gelişmiş bir keşif aracıdır. Ayarlanabilir tarama derinliği sunar, yinelenen sonuçları engeller ve bulguların dosyaya aktarılmasını destekler. Bu özellikleri sayesinde OSINT araştırmaları, güvenlik değerlendirmeleri ve iletişim keşfi için uygundur.
 
 <br>
 
