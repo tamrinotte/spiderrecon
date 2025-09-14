@@ -28,9 +28,10 @@ class SpiderRecon:
         is_download_on,
         download_folder_path,
         max_pages,
+        workers,
         output_file_path
     ):
-        self.max_workers = 10
+        self.max_workers = workers
         self.target = target
         self.is_email_scan_on = is_email_scan_on
         self.is_phone_number_scan_on = is_phone_number_scan_on
@@ -69,7 +70,7 @@ class SpiderRecon:
             is_file_scan_on=self.is_file_scan_on,
             downloadable_extensions=self.downloadable_extensions,
             social_media_domains=self.social_media_domains,
-            max_pages=self.max_pages
+            max_pages=self.max_pages,
         )
 
     def print_results(self):
@@ -197,7 +198,7 @@ def main():
     parser.add_argument(
         "-d",
         "--download",
-        help="Directory to download found files (requires -f)."
+        help="Download files and specify a directory to store found files (requires -f)."
     )
     parser.add_argument(
         "-m",
@@ -205,6 +206,13 @@ def main():
         type=int,
         default=1000,
         help="Max number of pages to crawl (default: 1000)."
+    )
+    parser.add_argument(
+        "-w",
+        "--workers",
+        type=int,
+        default=10,
+        help="Max number of workers."
     )
     parser.add_argument("-o", "--output", help="Save results to file.")
     args = parser.parse_args()
@@ -226,6 +234,7 @@ def main():
             is_download_on=is_download_on,
             download_folder_path=args.download,
             max_pages=args.max_pages,
+            workers=args.workers,
             output_file_path=args.output,
         )
         spiderrecon.start()

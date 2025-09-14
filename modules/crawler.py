@@ -64,7 +64,7 @@ def crawl_and_extract(
     is_file_scan_on,
     downloadable_extensions,
     social_media_domains,
-    max_pages
+    max_pages,
 ):
     visited = set()
     emails = set()
@@ -82,6 +82,7 @@ def crawl_and_extract(
     print(f"[+] Starting crawl at: {start_url}")
     print(f"[+] User agent: {user_agent}")
     print(f"[+] Max pages to crawl: {max_pages}")
+    print(f"[+] Max number of workers: {max_workers}\n")
     print(f"[+] Domain restriction: {domain}\n")
 
     try:

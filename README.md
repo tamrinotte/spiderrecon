@@ -32,6 +32,12 @@ SpiderRecon is an advanced reconnaissance tool designed to crawl websites and ex
 
 **-s, --social_media_scan:** Scan for social media accounts.
 
+**-f, --file_scan:** Scan for files.
+
+**-d, --download:** Download files and specify a directory to store found files (requires -f).
+
+**-w, --worker:** Maximum number of workers.
+
 **-m MAX_PAGES, --max_pages MAX_PAGES:** Max number of pages to crawl (default: 1000).
 
 **-o OUTPUT, --output OUTPUT:** Save results to file.
@@ -97,6 +103,12 @@ SpiderRecon, web sitelerini taramak ve herkese açık e-posta adresleri, telefon
 **-p, --phone_number_scan:** Telefon numarası taraması yap.
 
 **-s, --social_media_scan:** Sosyal medya taraması yap.
+
+**-f, --file_scan:** Dosya taraması yap.
+
+**-d, --download:** Dosyaları indir ve bulunan dosyaları depolamak için bir klasör belirt (‑f gerektirir).
+
+**-w, --worker:** Kullanılacak maksimum işçi sayısı.
 
 **-m MAX_PAGES, --max_pages MAX_PAGES:** Taranacak maksimum sayfa sayısı (varsayılan: 1000).
 
